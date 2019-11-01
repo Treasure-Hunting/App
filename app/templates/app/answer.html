@@ -15,10 +15,15 @@
       {% csrf_token %}
       <select name="number" required>
         <option value="">選択肢を表示</option>
-        <option value="00">00</option>
-        <option value="01">01</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
+        {% ifequal difficulty_pk 1}
+          <option value="0">0</option>
+          <option value="1">1</option>
+        {% else %}
+          <option value="00">00</option>
+          <option value="01">01</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+        {% endifequal %}
       </select>
       <input type="submit" value="確認">
     </form>
