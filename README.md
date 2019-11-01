@@ -1,9 +1,9 @@
 # Treasure-Hunting
 
-<a href="https://circleci.com/gh/Treasure-Hunting/treasure">
+<a href="https://circleci.com/gh/Treasure-Hunting/App">
     <img
         alt="Build"
-        src="https://img.shields.io/circleci/build/gh/Treasure-Hunting/treasure?logo=circleci&style=for-the-badge"
+        src="https://img.shields.io/circleci/build/gh/Treasure-Hunting/App?logo=circleci&style=for-the-badge"
     >
 </a>
 
