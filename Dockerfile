@@ -13,6 +13,8 @@ ENV DATABASE_ENGINE django.db.backends.postgresql
 ENV DATABASE_NAME postgres
 ENV DATABASE_HOST postgres
 ENV DATABASE_PORT 5432
+ENV DATABASE_USER postgres
+ENV DATABASE_PASSWORD ""
 
 RUN apk add libc-dev gcc postgresql-dev postgresql-client
 
