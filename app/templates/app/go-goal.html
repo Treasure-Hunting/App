@@ -1,39 +1,36 @@
-<!DOCTYPE html>
-<html lang="ja">
+{% extends "app/base.html" %}
 
-<head>
-  <meta charset="utf-8">
-  <title>Tresure-Hunt</title>
-  {% load static %}
-  <link rel="stylesheet" href="{% static "style/go-goal.css" %}" />
-  <script src="{% static "back-prevent.js" %}"></script>
-  </head>
+{% block title %}ゴールを目指せ！{% endblock %}
 
-  <body>
-    
-    {% csrf_token %}
-    {% ifequal difficulty_pk 1 %}
-      <h1>あなたが目指す場所は、{{ goal }}です。</h1>
-    {% else %}
-      <h1>キーワードを並び替えて2進数から{{change}}に変換し、その場所を目指せ！<!--changeは変換先のn進数--></h1>
-      <ol>
-        {% for quiz_data in quizzes %}
+{% block contents %}
+  {% csrf_token %}
+  {% ifequal difficulty_pk 1 %}
+    <h1>あなたが目指す場所は、{{ goal }}です。</h1>
+  {% else %}
+    <h1>キーワードを並び替えて2進数から{{ change }}に変換し、その場所を目指せ！<!--changeは変換先のn進数--></h1>
+    <ol>
+      {% for quiz_data in quizzes %}
         <li>
           {{ quiz_data.keyword }}
         </li>
-        {% endfor %}
-      </ol>
-      <table>
-        <thred>
-        <tr><th></th><th>2進数</th><th>{{ change }}</th></tr>
-        </thred>
-        <tbody>
-          {% for correspond in corresponds %}<!--correspondはbinaryが二進数でtoBaseが変換先-->
-          <tr><td>{{correspond.binary}}</td><td>{{correspond.to_base}}</td></tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    {% endifequal %}
-  </body>
-  
-</html>
+      {% endfor %}
+    </ol>
+    <table>
+      <thred>
+        <tr>
+          <th></th>
+          <th>2進数</th>
+          <th>{{ change }}</th>
+        </tr>
+      </thred>
+      <tbody>
+      {% for correspond in corresponds %}<!--correspondはbinaryが二進数でtoBaseが変換先-->
+        <tr>
+          <td>{{ correspond.binary }}</td>
+          <td>{{ correspond.to_base }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% endifequal %}
+{% endblock %}

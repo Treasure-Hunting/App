@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %} - こうよう探検隊</title>
+    <link rel="stylesheet" href="{% static "style/common.css" %}">
+    {% block stylesheets %}{% endblock %}
+  </head>
+  <body>
+    {% block contents %}{% endblock %}
+
+    <script src="{% static "back-prevent.js" %}"></script>
+    {% block scripts %}{% endblock %}
+  </body>
+</html>

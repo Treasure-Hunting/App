@@ -1,30 +1,21 @@
-<!DOCTYPE html>
-<html lang="ja">
-  
-  <head>
-    <meta charset="UTF-8">
-    <title>last</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static "style/last.css" %}">
-    <script src="{% static "back-prevent.js" %}"></script>
-  </head>
-  
-  <body>
-    <h1>おめでとうございます。あなたはすべてのクイズを解決し、宝へと至ります。</h1>
-    <div id="difficulty">
-      あなたが攻略したのは、{{ difficulty.name }}です。<br>
-      323講義室(情報科棟2階)へ向かってください。
-      <h2>注意</h2>
-      <h3>この画面は宝を得る際に必ず必要になります。閉じないでください。</h3>
-    </div>
+{% extends "app/base.html" %}
 
-    {% ifequal progress 6 %}
+{% block title %}エンディング{% endblock %}
+
+{% block contents %}
+  <h1>おめでとうございます。あなたはすべてのクイズを解決し、宝へと至ります。</h1>
+  <div id="difficulty">
+    あなたが攻略したのは、{{ difficulty.name }}です。<br>
+    323講義室(情報科棟2階)へ向かってください。
+    <h2>注意</h2>
+    <h3>この画面は宝を得る際に必ず必要になります。閉じないでください。</h3>
+  </div>
+
+  {% ifequal progress 6 %}
     下のボタンは景品を受け取った後に押して下さい
     <form action="" method="POST">
-        {% csrf_token %}
-    <input type="submit" value="景品受け取り確認">
-        </form>
-    {% endifequal %}
-  </body>
-  
-</html>
+      {% csrf_token %}
+      <input type="submit" value="景品受け取り確認">
+    </form>
+  {% endifequal %}
+{% endblock %}
