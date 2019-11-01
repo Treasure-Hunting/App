@@ -2,14 +2,4 @@ body {
   text-align: center;
 }
 
-#1 {
-  background-image: url("../img/easy.jpg");
-}
 
-#2 {
-  background-image: url("../img/normal.jpg");
-}
-
-#3 {
-  background-image: url("../img/hard.jpg");
-}
