@@ -13,10 +13,10 @@ ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'].split(',')
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432,
+        'ENGINE': os.environ['DATABASE_ENGINE'],
+        'NAME': os.environ['DATABASE_NAME'],
+        'USER': os.environ['DATABASE_USER'],
+        'HOST': os.environ['DATABASE_HOST'],
+        'PORT': int(os.environ['DATABASE_PORT']),
     }
 }
