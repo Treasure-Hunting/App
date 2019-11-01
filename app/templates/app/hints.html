@@ -5,20 +5,22 @@
     <meta charset="utf-8">
     <title>Tresure-Hunt</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static "style/dif-sel.css" %}" />
+    <link rel="stylesheet" href="{% static "style/hints.css" %}" />
     <script src="{% static "back-prevent.js" %}"></script>
   </head>
 
   <body>
-    <h1>ヒント {{ hint_index }} / 4</h1>
-    <div id="hint">{{ hint }}</div>
-    <form action="" method="post">
-      {% csrf_token %}
+    <span id="1">
+      <h1>ヒント {{ hint_index }} / 4</h1>
+      <div id="hint">{{ hint }}</div>
+      <form action="" method="post">
+          {% csrf_token %}
       <input type="submit" value="回答ページへ">
-    </form>
-    {% if result %}
+          </form>
+      {% if result %}
       <h2>{{ result }}</h2>
-    {% endif %}
+      {% endif %}
+    </span>
   </body>
   
 </html>
