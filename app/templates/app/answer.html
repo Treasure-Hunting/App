@@ -7,6 +7,15 @@
     <meta charset="UTF-8">
     <title>答えを入力</title>
     <link rel="stylesheet" href="style/answer.css">
+    {% ifequal difficulty.pk 1 %}
+      <link rel="stylesheet" href="{% static "style/easy.css" %}">
+    {% endifequal %}
+    {% ifequal difficulty.pk 2 %}
+      <link rel="stylesheet" href="{% static "style/normal.css" %}">
+    {% endifequal %}
+    {% ifequal difficulty.pk 3 %}
+      <link rel="stylesheet" href="{% static "style/hard.css" %}">
+    {% endifequal %}
   </head>
 
   <body>

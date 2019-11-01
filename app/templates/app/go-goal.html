@@ -7,7 +7,16 @@
   {% load static %}
   <link rel="stylesheet" href="{% static "style/go-goal.css" %}" />
   <script src="{% static "back-prevent.js" %}"></script>
-  </head>
+    {% ifequal difficulty_pk 1 %}
+      <link rel="stylesheet" href="{% static "style/easy.css" %}">
+    {% endifequal %}
+    {% ifequal difficulty_pk 2 %}
+      <link rel="stylesheet" href="{% static "style/normal.css" %}">
+    {% endifequal %}
+    {% ifequal difficulty_pk 3 %}
+      <link rel="stylesheet" href="{% static "style/hard.css" %}">
+    {% endifequal %}
+</head>
 
   <body>
     
