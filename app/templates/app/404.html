@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="ja">
+{% extends "app/base.html" %}
 
-  <head>
-    <meta charset="UTF-8">
-    <title>存在しないページへの遷移です</title>
-  </head>
+{% block title %}エラー{% endblock %}
 
-  <body>
-    存在しないページに遷移しようとしました。
-    404 Not Found
-  </body>
-
-</html>
+{% block contents %}
+  存在しないページに遷移しようとしました。
+  404 Not Found
+{% endblock %}
