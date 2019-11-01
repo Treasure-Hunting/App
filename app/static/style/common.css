@@ -13,3 +13,11 @@ body {
 blockquote {
     font-family: 'Sawarabi Mincho', serif;
 }
+
+.custom-control-label::before, .btn {
+    box-shadow: 0 0 5px 3px #fff;
+}
+
+.text-white {
+    text-shadow: 0 0 4px #000;
+}
