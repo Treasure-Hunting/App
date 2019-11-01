@@ -1,6 +1,8 @@
+from utility.conversion_table import ConversionTable
 
 
 class ConversionTableResolver:
+
     @staticmethod
     def createTable(difficulty_pk):
         conversionTable = ConversionTable()
@@ -15,8 +17,3 @@ class ConversionTableResolver:
                 }
             )
         return conversionTable
-
-
-class ConversionTable:
-    def __init__(self):
-        self.data = []
