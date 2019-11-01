@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+  
+  <head>
+    <meta charset="utf-8">
+    <title>Tresure-Hunt</title>
+    <link rel="stylesheet" href="{% static "style/dif-sel.css" %}" />
+    {% load static %}
+    <script src="{% static "back-prevent.js" %}"></script>
+  </head>
+  
+  <body>
+    <h1>宝探し</h1>
+    <h2>難易度を選んでください</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+  
+        {% for difficulty in difficulties %}
+          <div class="select">
+            <input type="radio" name="difficulty" id="{{ difficulty.id }}" value="{{ difficulty.id }}">
+            <label for="{{difficulty.id}}">
+              {{ difficulty.name }}
+            </label>
+          </div>
+        {% endfor %}
+  
+        <br>
+        <input type="submit" value="確認">
+    </form>
+  </body>
+
+</html>

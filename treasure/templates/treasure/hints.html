@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Tresure-Hunt</title>
+    <link rel="stylesheet" href="{% static "style/dif-sel.css" %}" />
+    {% load static %}
+    <script src="{% static "back-prevent.js" %}"></script>
+  </head>
+
+  <body>
+    <h1>ヒント {{ hint_index }} / 4</h1>
+    <div id="hint">{{ hint }}</div>
+    <form action="" method="post">
+      {% csrf_token %}
+      <input type="submit" value="回答ページへ">
+    </form>
+    {% if result %}
+      <h2>{{ result }}</h2>
+    {% endif %}
+  </body>
+  
+</html>

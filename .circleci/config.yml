@@ -1,0 +1,34 @@
+version: 2.1
+
+executors:
+  default:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/python
+
+jobs:
+  build:
+    executor: default
+
+    steps:
+      - checkout
+
+      - run:
+          name: Update pip
+          command: sudo pip3 install --upgrade pip
+
+      - run:
+          name: Install dependencies
+          command: sudo pip3 install Django pycodestyle --progress-bar off
+
+      - run:
+          name: Lint by pycodestyle
+          command: pycodestyle --exclude=migrations,settings.py oursite
+
+      - run:
+          name: Run tests
+          command: python3 manage.py test
+
+      - store_artifacts:
+          path: test-reports
+          destination: test-reports

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>Reset Difficulty</title>
+      <link rel="stylesheet" href="{% static "style/reset.css" %}">
+    {% load static %}
+    <script src="{% static "back-prevent.js" %}"></script>
+  </head>
+  <body>
+
+    <h1>現在のルートをあきらめて、スタートからやり直しますか？</h1>
+    <h3><span class="warning">警告</span>やり直しはもとに戻すことはできません。それを承知したうえで実行してください。<span class="warning">警告</span></h3>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <p>
+      <input type="radio" name="answer" value="y">はい
+      <input type="radio" name="answer" value="n" checked="checked">いいえ
+      </p>
+      <input type="submit" name="送信">
+    </form>
+  </body>
+</html>
