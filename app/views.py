@@ -89,7 +89,7 @@ class Answer(TemplateView):
         player = get_player(request)
         if (player.progress != kwargs['hint_index']):
             return redirect('app:progress-error')
-        kwargs['difficulty_pk'] = player.difficulty
+        kwargs['difficulty_pk'] = player.difficulty.pk
         return super().get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
