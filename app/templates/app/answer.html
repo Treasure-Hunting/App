@@ -28,4 +28,12 @@
       <input type="submit" class="btn btn-primary" value="確認">
     </div>
   </form>
+  {% if result %}
+    <div class="alert alert-danger">
+      <h4>エラー</h4>
+      <p class="mb-4">
+        選択肢が間違っています。
+      </p>
+    </div>
+  {% endif %}
 {% endblock %}
