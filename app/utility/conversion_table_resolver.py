@@ -1,4 +1,4 @@
-from utility.conversion_table import ConversionTable
+from app.utility.conversion_table import ConversionTable
 
 
 class ConversionTableResolver:
