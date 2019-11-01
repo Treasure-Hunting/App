@@ -17,14 +17,14 @@ class GoGoal(TemplateView):
         if (player.progress != 5):
             return redirect('app:progress-error')
 
-        difficulty_pk = player.difficulty.pk
-        kwargs['difficulty_pk'] = difficulty_pk
-        if(difficulty_pk == 1):
+        difficulty = player.difficulty
+        kwargs['difficulty'] = difficulty
+        if(difficulty.pk == 1):
             kwargs['goal'] = player.difficulty.goal.name
         else:
             kwargs['quizzes'] = player.difficulty.quizzes.all()
-            kwargs['change'] = ('10' if (difficulty_pk == 2) else '16') + '進数'
-            table = ConversionTableResolver.createTable(difficulty_pk)
+            kwargs['change'] = ('10' if (difficulty.pk == 2) else '16') + '進数'
+            table = ConversionTableResolver.createTable(difficulty.pk)
             kwargs['corresponds'] = table.data
         return super().get(request, *args, **kwargs)
 
@@ -44,7 +44,7 @@ class Hints(TemplateView):
         # kwargs['hint'] = hint[kwargs['hint_index']]
         quiz_data = player.quizzes.get(order=kwargs['hint_index'])
         kwargs['hint'] = quiz_data.quiz.hint
-        kwargs['difficulty_pk'] = player.difficulty
+        kwargs['difficulty'] = player.difficulty
         return super().get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
@@ -89,7 +89,7 @@ class Answer(TemplateView):
         player = get_player(request)
         if (player.progress != kwargs['hint_index']):
             return redirect('app:progress-error')
-        kwargs['difficulty_pk'] = player.difficulty.pk
+        kwargs['difficulty'] = player.difficulty
         return super().get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
@@ -179,6 +179,8 @@ class OnGoal(TemplateView):
         if kwargs['pk'] == player.difficulty.pk:
             player.progress = 6
             return redirect('app:last')
+
+        kwargs['difficulty'] = player.difficulty
         return super().get(request, **kwargs)
 
 

@@ -3,7 +3,7 @@
 {% block title %}答えを入力{% endblock %}
 
 {% block contents %}
-  <h1 class="h3 text-center mt-5 mb-3">
+  <h1 class="h3 text-center text-white mt-5 mb-3">
     答えを入力してください
   </h1>
   <form method="POST" action="">
@@ -12,7 +12,7 @@
       <label>
         <select class="custom-select" name="number" required>
           <option value="">選択肢を表示</option>
-          {% ifequal difficulty_pk 1 %}
+          {% ifequal difficulty.pk 1 %}
             <option value="0">0</option>
             <option value="1">1</option>
           {% else %}
