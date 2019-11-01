@@ -5,31 +5,40 @@
 {% block contents %}
   {% csrf_token %}
   {% ifequal difficulty_pk 1 %}
-    <h1>あなたが目指す場所は、{{ goal }}です。</h1>
+    <h1 class="h2 text-center mt-5 mb-3">
+      ゴールを目指せ！
+    </h1>
+    <p class="text-center">
+      あなたが目指す場所は、<br>
+      <span class="h4">{{ goal }}</span><br>
+      です。
+    </p>
   {% else %}
-    <h1>キーワードを並び替えて2進数から{{ change }}に変換し、その場所を目指せ！<!--changeは変換先のn進数--></h1>
-    <ol>
+    <h1 class="h4 text-center mt-5 mb-3">
+      キーワードを並び替えて<br>
+      2進数 から {{ change }} に変換し、<br>
+      その場所を目指せ！
+    </h1>
+    <p class="text-center my-4">
       {% for quiz_data in quizzes %}
-        <li>
-          {{ quiz_data.keyword }}
-        </li>
+        <kbd class="h1 mx-1">{{ quiz_data.keyword }}</kbd>
       {% endfor %}
-    </ol>
-    <table>
-      <thred>
+    </p>
+    <table class="table table-bordered w-auto mx-auto">
+      <thead>
         <tr>
-          <th></th>
           <th>2進数</th>
           <th>{{ change }}</th>
         </tr>
-      </thred>
+      </thead>
       <tbody>
-      {% for correspond in corresponds %}<!--correspondはbinaryが二進数でtoBaseが変換先-->
-        <tr>
-          <td>{{ correspond.binary }}</td>
-          <td>{{ correspond.to_base }}</td>
-        </tr>
-      {% endfor %}
+        <!-- correspond は binary が 二進数で toBase が変換先 -->
+        {% for correspond in corresponds %}
+          <tr>
+            <td><code>{{ correspond.binary }}</code></td>
+            <td><code>{{ correspond.to_base }}</td>
+          </tr>
+        {% endfor %}
       </tbody>
     </table>
   {% endifequal %}
