@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
 
-from views.common import get_player
+from .common import get_player
 
 
 class OnGoal(TemplateView):

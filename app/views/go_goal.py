@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from django.views.generic import TemplateView
 
-from utility import ConversionTableResolver
+from app.utility import ConversionTableResolver
 from .common import get_player
 
 

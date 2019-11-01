@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from django.views import View
 
-from views.common import move_page_by_progress
+from .common import move_page_by_progress
 
 
 class ProgressError(View):
