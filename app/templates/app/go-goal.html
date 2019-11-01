@@ -4,27 +4,27 @@
 
 {% block contents %}
   {% csrf_token %}
-  {% ifequal difficulty_pk 1 %}
-    <h1 class="h2 text-center mt-5 mb-3">
+  {% ifequal difficulty.pk 1 %}
+    <h1 class="h2 text-center text-white mt-5 mb-3">
       ゴールを目指せ！
     </h1>
-    <p class="text-center">
+    <p class="text-center text-white">
       あなたが目指す場所は、<br>
       <span class="h4">{{ goal }}</span><br>
       です。
     </p>
   {% else %}
-    <h1 class="h4 text-center mt-5 mb-3">
+    <h1 class="h4 text-center text-white mt-5 mb-3">
       キーワードを並び替えて<br>
       2進数 から {{ change }} に変換し、<br>
       その場所を目指せ！
     </h1>
-    <p class="text-center my-4">
+    <p class="text-center text-white my-4">
       {% for quiz_data in quizzes %}
         <kbd class="h1 mx-1">{{ quiz_data.keyword }}</kbd>
       {% endfor %}
     </p>
-    <table class="table table-bordered w-auto mx-auto">
+    <table class="table table-bordered bg-light w-auto mx-auto">
       <thead>
         <tr>
           <th>2進数</th>

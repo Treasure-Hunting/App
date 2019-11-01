@@ -3,8 +3,8 @@
 {% block title %}難易度選択{% endblock %}
 
 {% block contents %}
-  <h1 class="text-center mt-5">宝探し</h1>
-  <p class="lead text-center">難易度を選んでください</p>
+  <h1 class="text-center text-white mt-5">宝探し</h1>
+  <p class="lead text-center text-white">難易度を選んでください</p>
   <form action="" method="POST">
     {% csrf_token %}
     <div class="text-center mb-3">
@@ -19,7 +19,7 @@
             required
           >
           <label
-            class="custom-control-label"
+            class="custom-control-label text-white"
             for="option{{ difficulty.id }}"
           >
             {{ difficulty.name }}

@@ -1,4 +1,9 @@
 {% extends "app/base.html" %}
+{% load static %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{% static "/style/goal.css" %}">
+{% endblock %}
 
 {% block title %}エンディング{% endblock %}
 
