@@ -15,7 +15,7 @@
       {% csrf_token %}
       <select name="number" required>
         <option value="">選択肢を表示</option>
-        {% ifequal difficulty_pk 1}
+        {% ifequal difficulty_pk 1 %}
           <option value="0">0</option>
           <option value="1">1</option>
         {% else %}
