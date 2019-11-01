@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    {% load static %}
+    <script src="{% static "back-prevent.js" %}"></script>
+    <meta charset="UTF-8">
+    <title>答えを入力</title>
+    <link rel="stylesheet" href="style/answer.css">
+  </head>
+
+  <body>
+    <h2>答えを入力してください</h2>
+    <form method="POST" action="">
+      {% csrf_token %}
+      <select name="number" required>
+        <option value="">選択肢を表示</option>
+        <option value="00">00</option>
+        <option value="01">01</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+      </select>
+      <input type="submit" value="確認">
+    </form>
+  </body>
+</html>
