@@ -1,21 +1,33 @@
 {% extends "app/base.html" %}
 
-{% load static %}
-{% block stylesheets %}
-  <link rel="stylesheet" href="{% static "style/reset.css" %}">
-{% endblock %}
-
 {% block title %}リセット{% endblock %}
 
 {% block contents %}
-  <h1>現在のルートをあきらめて、スタートからやり直しますか？</h1>
-  <h3><span class="warning">警告</span>やり直しはもとに戻すことはできません。それを承知したうえで実行してください。<span class="warning">警告</span></h3>
+  <h1 class="h4 text-center mt-5 mb-3">
+    現在のルートをあきらめて、<br>
+    スタートからやり直しますか？
+  </h1>
+  <div class="alert alert-danger">
+    <h4>警告</h4>
+    <p class="mb-0">
+      やり直しはもとに戻すことはできません。
+      それを承知したうえで実行してください。
+    </p>
+  </div>
   <form action="" method="POST">
     {% csrf_token %}
-    <p>
-      <input type="radio" name="answer" value="y">はい
-      <input type="radio" name="answer" value="n" checked="checked">いいえ
-    </p>
-    <input type="submit" name="送信">
+    <div class="text-center mb-3">
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="option1" class="custom-control-input" name="answer" value="y">
+        <label class="custom-control-label" for="option1">はい</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="option2" class="custom-control-input" name="answer" value="n" checked>
+        <label class="custom-control-label" for="option2">いいえ</label>
+      </div>
+    </div>
+    <div class="text-center">
+      <input type="submit" class="btn btn-primary" name="送信">
+    </div>
   </form>
 {% endblock %}

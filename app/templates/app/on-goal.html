@@ -3,11 +3,26 @@
 {% block title %}エラー{% endblock %}
 
 {% block contents %}
-  <h1>道を間違えたようだ……。</h1>
-  <h3>暗号に間違いがあるな。もう一度、スポットに戻って確認したり、変換に間違いがないかしらべたらどうだ？</h3>
-
-  ……どうしてもわからないだって?それなら、ウチに来な。322講義室だ。迷うんじゃねぇぞ？
-  <p>
-    難易度が違います。別のＱＲコードを読んでください。
-  </p>
+  <h1 class="h3 text-center mt-5 mb-3">
+    道を間違えたようだ……。
+  </h1>
+  <blockquote class="blockquote text-center mb-4">
+    <p class="mb-0">
+      暗号に間違いがあるな。<br>
+      もう一度、スポットに戻って<br>
+      確認したり、 変換に間違いが<br>
+      ないかしらべたらどうだ？
+    </p>
+    <footer class="blockquote-footer">
+      どうしてもわからないだって?<br>
+      それなら、ウチに来な。<br>
+      322講義室だ。 迷うんじゃねぇぞ？
+    </footer>
+  </blockquote>
+  <div class="alert alert-danger">
+    <h4>エラー</h4>
+    <p class="mb-0">
+      難易度が違います。別のＱＲコードを読んでください。
+    </p>
+  </div>
 {% endblock %}
