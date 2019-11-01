@@ -1,27 +1,29 @@
 FROM python:3-alpine
 
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONUNBUFFERED="1" \
+    DJANGO_SETTINGS_MODULE="treasure_hunting.settings.production" \
+    SECRET_KEY="_" \
+    ALLOWED_HOSTS="localhost" \
+    HOST="0.0.0.0" \
+    PORT="80" \
+    DATABASE_ENGINE="django.db.backends.postgresql" \
+    DATABASE_NAME="postgres" \ 
+    DATABASE_HOST="postgres" \
+    DATABASE_PORT="5432" \
+    DATABASE_USER="postgres" \
+    DATABASE_PASSWORD=""
 
-ENV DJANGO_SETTINGS_MODULE treasure_hunting.settings.production
-ENV SECRET_KEY _
-ENV ALLOWED_HOSTS localhost
+RUN set -x && \
+    apk upgrade --no-cache && \
+    apk add --no-cache libc-dev \
+                       gcc \
+                       postgresql-dev \
+                       postgresql-client
 
-ENV HOST 0.0.0.0
-ENV PORT 80
+ARG project_dir=/app
+WORKDIR ${project_dir}
+COPY . ${project_dir}
 
-ENV DATABASE_ENGINE django.db.backends.postgresql
-ENV DATABASE_NAME postgres
-ENV DATABASE_HOST postgres
-ENV DATABASE_PORT 5432
-ENV DATABASE_USER postgres
-ENV DATABASE_PASSWORD ""
-
-RUN apk add libc-dev gcc postgresql-dev postgresql-client
-
-RUN mkdir /app
-WORKDIR /app
-
-COPY . /app/
 RUN pip install -r requirements.txt
 
 ENTRYPOINT ["/app/entrypoint.sh"]
