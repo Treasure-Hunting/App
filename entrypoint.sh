@@ -8,4 +8,4 @@ done
 
 python manage.py migrate
 python manage.py loaddata initial_data
-python manage.py runserver $HTTP_HOST:$HTTP_PORT
+python manage.py runserver $HOST:$PORT

@@ -6,13 +6,15 @@ ENV DJANGO_SETTINGS_MODULE treasure_hunting.settings.production
 ENV SECRET_KEY _
 ENV ALLOWED_HOSTS localhost
 
-ENV HTTP_HOST 0.0.0.0
-ENV HTTP_PORT 80
+ENV HOST 0.0.0.0
+ENV PORT 80
 
 ENV DATABASE_ENGINE django.db.backends.postgresql
 ENV DATABASE_NAME postgres
 ENV DATABASE_HOST postgres
 ENV DATABASE_PORT 5432
+ENV DATABASE_USER postgres
+ENV DATABASE_PASSWORD ""
 
 RUN apk add libc-dev gcc postgresql-dev postgresql-client
 
