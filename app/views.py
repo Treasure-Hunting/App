@@ -44,7 +44,7 @@ class Hints(TemplateView):
         # kwargs['hint'] = hint[kwargs['hint_index']]
         quiz_data = player.quizzes.get(order=kwargs['hint_index'])
         kwargs['hint'] = quiz_data.quiz.hint
-        kwargs['difficulty_pk'] = player.difficulty
+        kwargs['difficulty'] = player.difficulty
         return super().get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
@@ -89,7 +89,7 @@ class Answer(TemplateView):
         player = get_player(request)
         if (player.progress != kwargs['hint_index']):
             return redirect('app:progress-error')
-        kwargs['difficulty_pk'] = player.difficulty
+        kwargs['difficulty'] = player.difficulty
         return super().get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
