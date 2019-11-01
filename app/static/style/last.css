@@ -1,18 +1,3 @@
 body {
-    margin-top: 400px;
     text-align: center;
-}
-
-h1 {
-    margin-bottom: 250px;
-}
-
-#difficulty {
-    font-size: 35px;
-}
-
-body {
-    background-image: url("../img/goal.jpg");
-    background-repeat: no-repeat;
-    background-position: 55% 10%;
 }

@@ -5,17 +5,8 @@
     <meta charset="utf-8">
     <title>Tresure-Hunt</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static "style/hints.css" %}">
+    <link rel="stylesheet" href="{% static "style/dif-sel.css" %}" />
     <script src="{% static "back-prevent.js" %}"></script>
-      {% ifequal difficulty.pk 1 %}
-        <link rel="stylesheet" href="{% static "style/easy.css" %}">
-      {% endifequal %}
-      {% ifequal difficulty.pk 2 %}
-        <link rel="stylesheet" href="{% static "style/normal.css" %}">
-      {% endifequal %}
-      {% ifequal difficulty.pk 3 %}
-        <link rel="stylesheet" href="{% static "style/hard.css" %}">
-      {% endifequal %}
   </head>
 
   <body>
@@ -24,11 +15,10 @@
     <form action="" method="post">
       {% csrf_token %}
       <input type="submit" value="回答ページへ">
-          </form>
-      {% if result %}
+    </form>
+    {% if result %}
       <h2>{{ result }}</h2>
-      {% endif %}
-    </span>
+    {% endif %}
   </body>
   
 </html>
