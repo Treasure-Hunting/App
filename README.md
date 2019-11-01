@@ -13,8 +13,7 @@
 
 ## Installation
 ```console
-$ git clone https://github.com/Treasure-Hunting/treasure.git server
-$ cd server
+$ git clone https://github.com/Treasure-Hunting/App.git && cd App
 $ python manage.py migrate
 $ python manage.py loaddata initial_data
 $ python manage.py runserver

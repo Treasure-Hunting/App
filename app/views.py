@@ -9,13 +9,13 @@ from .utility import ConversionTableResolver
 
 
 class GoGoal(TemplateView):
-    template_name = "treasure/go-goal.html"
+    template_name = "app/go-goal.html"
 
     def get(self, request, *args, **kwargs):
         player = get_player(request)
 
         if (player.progress != 5):
-            return redirect('treasure:progress-error')
+            return redirect('app:progress-error')
 
         difficulty_pk = player.difficulty.pk
         kwargs['difficulty_pk'] = difficulty_pk
@@ -30,13 +30,13 @@ class GoGoal(TemplateView):
 
 
 class Hints(TemplateView):
-    template_name = 'treasure/hints.html'
+    template_name = 'app/hints.html'
 
     def get(self, request, *args, **kwargs):
         # セッションからplayerの情報を取得
         player = get_player(request)
         if (player.progress != kwargs['hint_index']):
-            return redirect('treasure:progress-error')
+            return redirect('app:progress-error')
         # 簡略化
         # hint = {1: player.quiz1.hint, 2: player.quiz2.hint,
         #        3: player.quiz3.hint, 4: player.quiz4.hint}
@@ -65,35 +65,35 @@ class Hints(TemplateView):
         #            player.progress = 5
         #            player.save()
         #            ゴール誘導ページへ
-        #            return redirect('treasure:go-goal')
+        #            return redirect('app:go-goal')
         #        else:
         #            player.progress = kwargs['hint_index'] + 1
         #            player.save()
         #            # 次のページへ
-        #            return redirect('treasure:hints',
+        #            return redirect('app:hints',
         #                            hint_index=str(kwargs['hint_index'] + 1))
         #    else:
         #        # 不正解と送信
         #        kwargs['result'] = '不正解'
-        return redirect('treasure:answer',
+        return redirect('app:answer',
                         hint_index=str(kwargs['hint_index']))
         # return self.get(request, *args, **kwargs)
 
 
 class Answer(TemplateView):
-    template_name = "treasure/answer.html"
+    template_name = "app/answer.html"
 
     def get(self, request, *args, **kwargs):
         # セッションからplayerの情報を取得
         player = get_player(request)
         if (player.progress != kwargs['hint_index']):
-            return redirect('treasure:progress-error')
+            return redirect('app:progress-error')
         return super().get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         # キャンセル
         if self.request.POST.get('cancel', -1) == '1':
-            return redirect('treasure:hints',
+            return redirect('app:hints',
                             hint_index=str(kwargs['hint_index']))
         # キーワードを受け取ったなら
         elif self.request.POST.get('number', None):
@@ -113,12 +113,12 @@ class Answer(TemplateView):
                     player.progress = 5
                     player.save()
                     # ゴール誘導ページへ
-                    return redirect('treasure:go-goal')
+                    return redirect('app:go-goal')
                 else:
                     player.progress = kwargs['hint_index'] + 1
                     player.save()
                     # 次のページへ
-                    return redirect('treasure:hints',
+                    return redirect('app:hints',
                                     hint_index=str(kwargs['hint_index'] + 1))
             else:
                 # 不正解と送信
@@ -127,21 +127,21 @@ class Answer(TemplateView):
 
 
 class Opening(TemplateView):
-    template_name = 'treasure/opening.html'
+    template_name = 'app/opening.html'
 
     def post(self, request, **kwargs):
         if(request.session.get('player_pk', -1) != -1):
-            return redirect('treasure:reset')
+            return redirect('app:reset')
         else:
-            return redirect('treasure:dif-sel')
+            return redirect('app:dif-sel')
 
 
 class DifSel(TemplateView):
-    template_name = 'treasure/dif-sel.html'
+    template_name = 'app/dif-sel.html'
 
     def get(self, request, *args, **kwargs):
         if (request.session.get('player_pk', -1) != -1):
-            return redirect('treasure:progress-error')
+            return redirect('app:progress-error')
         return super().get(self, request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -162,26 +162,26 @@ class DifSel(TemplateView):
                 QuizData.objects.create(quiz=quizzes[i], order=i+1)
             )
         request.session['player_pk'] = player.pk
-        return redirect('treasure:hints', hint_index=1)
+        return redirect('app:hints', hint_index=1)
 
 
 class OnGoal(TemplateView):
-    template_name = 'treasure/on-goal.html'
+    template_name = 'app/on-goal.html'
 
     def get(self, request, **kwargs):
         player = get_player(request)
 
         if (player.progress != 5):
-            return redirect('treasure:progress-error')
+            return redirect('app:progress-error')
 
         if kwargs['pk'] == player.difficulty.pk:
             player.progress = 6
-            return redirect('treasure:last')
+            return redirect('app:last')
         return super().get(request, **kwargs)
 
 
 class Last(TemplateView):
-    template_name = 'treasure/last.html'
+    template_name = 'app/last.html'
 
     def get(self, request, **kwargs):
         player = get_player(request)
@@ -201,17 +201,17 @@ class ProgressError(View):
 
     def get(self, request, **kwargs):
         if (request.session.get('player_pk', -1) == -1):
-            return redirect('treasure:dif-sel')
+            return redirect('app:dif-sel')
         return move_page_by_progress(request)
 
 
 class Reset(TemplateView):
-    template_name = 'treasure/reset.html'
+    template_name = 'app/reset.html'
 
     def get(self, request, *args, **kwargs):
         if (request.session.get('player_pk', -1) == -1 or
                 get_player(request).progress == 7):
-            return redirect('treasure:progress-error')
+            return redirect('app:progress-error')
         else:
             return super().get(request, *args, **kwargs)
 
@@ -221,7 +221,7 @@ class Reset(TemplateView):
         if (answer == 'y'):
             player.delete()
             del request.session['player_pk']
-            return redirect('treasure:dif-sel')
+            return redirect('app:dif-sel')
         else:
             return move_page_by_progress(request)
 
@@ -235,9 +235,9 @@ def move_page_by_progress(request):
     player = get_player(request)
     progress = player.progress
     if (progress <= 4):
-        return redirect('treasure:hints', hint_index=progress)
+        return redirect('app:hints', hint_index=progress)
     elif (progress == 5):
-        return redirect('treasure:go-goal')
+        return redirect('app:go-goal')
     elif (progress == 6 or progress == 7):
-        return redirect('treasure:last')
+        return redirect('app:last')
     return Http404()
