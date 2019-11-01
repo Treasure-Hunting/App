@@ -6,8 +6,8 @@ ENV DJANGO_SETTINGS_MODULE treasure_hunting.settings.production
 ENV SECRET_KEY _
 ENV ALLOWED_HOSTS localhost
 
-ENV HTTP_HOST 0.0.0.0
-ENV HTTP_PORT 80
+ENV HOST 0.0.0.0
+ENV PORT 80
 
 ENV DATABASE_ENGINE django.db.backends.postgresql
 ENV DATABASE_NAME postgres
