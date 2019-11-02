@@ -20,7 +20,7 @@ class GoGoal(TemplateView):
         if difficulty.pk == 1:
             kwargs['goal'] = player.difficulty.goal.name
         else:
-            kwargs['quizzes'] = player.difficulty.quizzes.all()
+            kwargs['quizzes'] = player.difficulty.quizzes.all().order_by('pk')
             kwargs['change'] = ('10' if (difficulty.pk == 2) else '16') + '進数'
             table = ConversionTableResolver.createTable(difficulty.pk)
             kwargs['corresponds'] = table.data
