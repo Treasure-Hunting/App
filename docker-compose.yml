@@ -6,7 +6,7 @@ services:
     container_name: treasure-hunting_db
     restart: always
     volumes:
-      - ./var/postgresql:/var/lib/postgresql
+      - ./var/postgresql/data:/var/lib/postgresql/data
 
   app:
     build: .
