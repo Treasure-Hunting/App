@@ -15,8 +15,10 @@
     </p>
   {% else %}
     <h1 class="h4 text-center text-white mt-5 mb-3">
-      キーワードを並び替えて<br>
       2進数 から {{ change }} に変換し、<br>
+      {% ifequal difficulty.pk 2 %}
+        パンフレットの番号の
+      {% endifequal %}
       その場所を目指せ！
     </h1>
     <p class="text-center text-white my-4">
