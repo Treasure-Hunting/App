@@ -11,7 +11,8 @@ ENV PYTHONUNBUFFERED="1" \
     DATABASE_HOST="postgres" \
     DATABASE_PORT="5432" \
     DATABASE_USER="postgres" \
-    DATABASE_PASSWORD=""
+    DATABASE_PASSWORD="" \
+    FIXTURE="initial_data"
 
 RUN set -x && \
     apk upgrade --no-cache && \

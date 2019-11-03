@@ -7,5 +7,5 @@ do
 done
 
 python manage.py migrate
-python manage.py loaddata initial_data
+python manage.py loaddata $FIXTURE
 python manage.py runserver $HOST:$PORT
